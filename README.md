@@ -1,10 +1,10 @@
 
 #### Requirements:
-Python 3.8 or later
-Django 5.0 or later
-scikit-learn
-pandas
-joblib
+Python 3.8 or later,
+Django 5.0 or later,
+scikit-learn,
+pandas,
+joblib,
 
 #### git
 ```bash
