@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-end mt-3">
+        {% if user.is_authenticated %}
+            <!-- You can add authenticated user links here if needed -->
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+            <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
+        {% endif %}
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+        <div class="w-100 text-center" style="max-width: 600px;">
+            <form method="post" enctype="multipart/form-data" action="{% url 'process_csv' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="model">Select Model:</label><br>
+                    <input type="radio" id="logistic_model" name="model" value="logistic" checked>
+                    <label for="logistic_model">Logistic Regression</label><br>
+                    <input type="radio" id="forest_model" name="model" value="forest">
+                    <label for="forest_model">Random Forest</label>
+                </div>
+                <div class="form-group form-group-center">
+                    <label for="csv_file">Upload CSV file:</label>
+                    <input type="file" class="form-control-file file-input-right" id="csv_file" name="csv_file" accept=".csv">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
